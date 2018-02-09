@@ -4,7 +4,9 @@
 
 ## Overview
 
-**kmeans_R** is an R package aimed towards a user-friendly way of exploring and implementing k-means clustering. The package integrates and simplifies different functions, such as [kmeans](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/kmeans.html) and [KMeans_rcpp](https://cran.r-project.org/web/packages/ClusterR/ClusterR.pdf), into one easy-to-use package.
+**kmeans_R** is an R package aimed towards a user-friendly way of exploring and implementing k-means clustering.
+
+The package integrates and simplifies different functions, such as [kmeans](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/kmeans.html) and [KMeans_rcpp](https://cran.r-project.org/web/packages/ClusterR/ClusterR.pdf), into one easy-to-use package.
 
 The package includes the following functions:
 
@@ -14,4 +16,10 @@ The package includes the following functions:
 
 * `kmeans_plot(obj)` Visualizes clustered data using an object that is formatted in the same way as the object returned by the `kmeans` function.
 
-![K-Means](docs/images/readme_clustering.PNG)
+## Contributors
+
+[Bradley Pick](https://github.com/bradleypick)
+
+[Charley Carriero](https://github.com/charcarr)
+
+[Johannes Harmse](https://github.com/johannesharmse)
