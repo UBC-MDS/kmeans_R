@@ -1,3 +1,6 @@
+
+<img src="docs/images/logo_R_crop.png" align="right" border = "10" />
+
 # kmeans_R
 
 [![GitHub issues](https://img.shields.io/github/issues/UBC-MDS/kmeans_R.svg)](https://github.com/UBC-MDS/kmeans_R/issues)
