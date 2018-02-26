@@ -13,7 +13,7 @@ kmeans_init(data, K, algorithm = "k-means++")
   \item{algorithm}{the initialisation algorithm specified as a string.}
 }
 \value{
-
+A matrix with coordinates for initialization values, where each row is an initialization value and the columns correspond with the columns of the input data object.
 }
 \examples{
 
