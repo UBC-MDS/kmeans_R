@@ -10,6 +10,15 @@
 #` data = data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
 #`
 #` kmeans_init(data = data, K = 2)
-kmeans_init <- function(data, K, algorithm = "k-means++") {
-  
+kmeans_init <- function(data = NULL, K = NULL, algorithm = "k-means++") {
+  if (is.null(data) ||
+    (!is.data.frame(data) &&
+      !is.matrix(data))){
+    stop("Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
+  }else if(is.null(K) || !is.numeric(K) || (K %% 1) != 0){
+    stop("K value is missing or not a numeric integer. Please specify the number of initial values/seeds as an integer.")
+  }
+
+  return(0)
+
 }
