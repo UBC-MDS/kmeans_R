@@ -1,3 +1,12 @@
+# Kmeans initilization tests
+#
+# Testing includes:
+#  - graceful failure when handed null data
+#  - graceful failure when handed nullnumber of clusters
+#  - defaults to 0 when no data and zero clusters are provided
+#  - checks that returns object of type matrix
+#  - checks that the dimension of returned matrix is correct
+
 library(kmeansR)
 context("kmeans initialization")
 
