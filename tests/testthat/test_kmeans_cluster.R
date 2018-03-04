@@ -1,3 +1,12 @@
+# Kmeans clustering tests
+#
+# Testing includes:
+#  - graceful failure when handed null data
+#  - correctly clusters toy example
+#  - checks that returns object of type list
+#  - checks that the list contains the original data
+#  - checks that the list contains the cluster assignments
+
 library(kmeansR)
 context("kmeans clustering")
 

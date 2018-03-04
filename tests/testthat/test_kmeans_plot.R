@@ -1,3 +1,10 @@
+# Kmeans plot tests
+#
+# Testing includes:
+#  - graceful failure when handed null data
+#  - graceful failure when cluster assignments are missing
+#  - checks that a plot file is actually produced and saved
+
 library(kmeansR)
 context("kmeans plotting")
 
