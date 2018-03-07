@@ -13,7 +13,7 @@ context("kmeans clustering")
 test_that("kmeans_cluster is a list containing data and cluster assignments", {
 
  # test that the correct error is thrown in the absence of data
- expect_error(kmeans_cluster(data = NULL),
+ expect_error(kmeans_cluster(data = NULL, centers=NULL),
                "Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
 
 
