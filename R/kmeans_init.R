@@ -20,6 +20,10 @@ kmeans_init <- function(data = NULL, K = NULL, algorithm = "k-means++") {
     stop("K value is missing or not a numeric integer. Please specify the number of initial values/seeds as an integer.")
   }
 
+  if (K == 0){
+    return(matrix(numeric(0), ncol = ncol(data), byrow = TRUE))
+  }
+
   # format as matrix in case of data frame
   if (!is.matrix(data)){
     data <- as.matrix(data)
