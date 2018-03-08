@@ -52,7 +52,7 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
     last_assign <- cur_assign
   }
   # warn the user if we didn't converge in max_iter number of iterations
-  print("Did not converge")
+  warning("Did not converge in specified number of iterations")
   return(list(assignments=data.frame(assignments=cur_assign),
               data=as.data.frame(data)))
 
