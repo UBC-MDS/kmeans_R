@@ -5,7 +5,7 @@
 Selects initial values (or seeds) for k-means clustering based on the input data object. K number of initial values are chosen by applying the specified algorithm.
 }
 \usage{
-kmeans_init(data, K, algorithm = "k-means++")
+kmeans_init(data, K, algorithm = "kmeans++")
 }
 \arguments{
   \item{data}{the data object (data frame or matrix) that k-means clustering will be applied to.}
