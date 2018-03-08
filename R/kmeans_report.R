@@ -14,9 +14,9 @@ kmeans_report <- function(data, clust_assigns) {
 
   # check to make sure the data and centers are not NULL
   if (is.null(data)) {
-    stop("Data object is missing or in the wrong format. Make sure you input a data frame.")
+    stop("Data object is missing or in the wrong format. Make sure you input a data frame")
   } else if (is.null(clust_assigns)) {
-    stop("Make sure you input cluster assignments as a data frame!")
+    stop("Cluster assignements are in the wrong format. Make sure you input a data frame")
   } else if (nrow(data) != nrow(clust_assigns)) {
     stop("The data and cluster assignments are different sizes. Make sure they have the same number of rows.")
   }
