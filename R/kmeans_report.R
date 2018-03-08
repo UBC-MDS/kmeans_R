@@ -29,7 +29,5 @@ kmeans_report <- function(data, clust_assigns) {
 
   }
 
-  ggsave("cluster_plot.png", p)
-
   return(list(assignment_df, p, summary_df))
 }
