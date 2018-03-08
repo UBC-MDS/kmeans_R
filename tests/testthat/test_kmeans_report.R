@@ -20,12 +20,14 @@ test_that("kmeans_plot successfully plots the data and cluster assignments", {
 
   # test that the output is a list ()
   expect_equal(is.list(kmeans_report(data = data.frame(x = c(1,5,1), y = c(2,-5,2), z = c(3,0,3)),
-                                     clust_assigns = c(1,2,3))), TRUE)
+                                     clust_assigns = data.frame(x = c(1), y = c(2), z = c(3)))), TRUE)
 
-  expect_equal(is.ggplot(kmeans_report(data = data.frame(x = c(1,5), y = c(2,-5), z = c(3,0)),
-                                       clust_assigns = c(1,2,3)))$plot, TRUE)
+  # check that a plot is produced for 2 dimensional data
+  expect_equal(is.ggplot(kmeans_report(data = data.frame(x = c(1,5), y = c(2,-5)),
+                                       clust_assigns = data.frame(x = c(1), y = c(2)))$plot), TRUE)
 
-  expect_equal(is.data.frame(kmeans_report(data = data.frame(x = c(1,5), y = c(2,-5), z = c(3,0)),
-                                           clust_assigns = c(1,2,3)))$summary, TRUE)
+  # check that a tibble is returned with summary data
+  expect_equal(is.tibble(kmeans_report(data = data.frame(x = c(1,5), y = c(2,-5), z = c(3,0)),
+                                           clust_assigns = data.frame(x = c(1), y = c(2), z = c(3)))$summary), TRUE)
 
 })
