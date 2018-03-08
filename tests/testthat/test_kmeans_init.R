@@ -32,6 +32,10 @@ test_that("kmeans_init is a matrix of initialization coordinates", {
   expect_error(kmeans_init(data = data_df, K = nrow(data_df) + 1),
                "Cannot generate more initializing values than available data points. Please select a K value smaller than the number of observations.")
 
+  # Check if valid algorithm has been chosen
+  expect_error(kmeans_init(data = data_df, K = 2, algorithm = "blah"),
+               "Please choose a valid algorithm or revert to default.")
+
   # no initialize values
   expect_equal(nrow(kmeans_init(data = data.frame(), K = 0)), 0)
   expect_equal(ncol(kmeans_init(data = data.frame(), K = 0)), 0)

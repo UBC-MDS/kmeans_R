@@ -10,7 +10,7 @@
 #` data = data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
 #`
 #` kmeans_init(data = data, K = 2)
-kmeans_init <- function(data = NULL, K = NULL, algorithm = "k-means++") {
+kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeans++") {
 
   if (is.null(data) ||
     (!is.data.frame(data) &&
@@ -37,69 +37,73 @@ kmeans_init <- function(data = NULL, K = NULL, algorithm = "k-means++") {
 
   # kmeans++ algorithm
 
-  # use first observation as random first centroid starting point
-  centroids[[1]] <- data[1, ]
+  if (algorithm == 'kmeans++'){
+    # use first observation as random first centroid starting point
+    centroids[[1]] <- data[1, ]
 
 
-  # assign rest of centroids
+    # assign rest of centroids
 
-  # filter through number of centroid assignments (minus 1 that has already been created)
-  for (count in 2:K){
-    cluster_dist <- c()
+    # filter through number of centroid assignments (minus 1 that has already been created)
+    for (count in 2:K){
+      cluster_dist <- c()
 
 
-    # cycly through all data points/possible centroids
-    for (point in 1:nrow(data)){
-      # determine closest existing centroid to point with squared sum
-      cluster_dist[point] <- min(sapply(1:length(centroids), function(x)
-        sum((data[point, ] - centroids[[x]])^2)))
-    }
-
-    # calculate normalizing factor
-    dist_cumsum <- sum(cluster_dist)
-
-    # initialize cdf
-    cluster_dist_cum_probs <- c()
-
-    # iterate through data point to centroid minimum distances
-    for (cum_count in 1:length(cluster_dist)){
-      # create pdf of distances
-      prob <- cluster_dist[cum_count]/dist_cumsum
-      # initial cdf assigning
-      if (cum_count == 1){
-        cluster_dist_cum_probs[cum_count] <- prob
-      # create rest of cdf
-      }else{
-        cluster_dist_cum_probs[cum_count] <-
-          cluster_dist_cum_probs[cum_count - 1] + prob
+      # cycly through all data points/possible centroids
+      for (point in 1:nrow(data)){
+        # determine closest existing centroid to point with squared sum
+        cluster_dist[point] <- min(sapply(1:length(centroids), function(x)
+          sum((data[point, ] - centroids[[x]])^2)))
       }
-    }
 
+      # calculate normalizing factor
+      dist_cumsum <- sum(cluster_dist)
 
-    # random sample from uniform distribution
-    # we need to stipulate a random point somewhere in the cdf
+      # initialize cdf
+      cluster_dist_cum_probs <- c()
 
-    init_samp <- runif(1)
-
-    # centre selected based on cdf
-    # the sample value will have a higher probability of landing on a generally far away distance (clustered points in different cluster to centroids)
-    # since these have the biggest weight/area in the cdf
-    for (cum_count in 1:nrow(data)){
-      # assign centroid based on where it cdf
-      if (init_samp < cluster_dist_cum_probs[cum_count]){
-        cent <- cum_count
-        break
+      # iterate through data point to centroid minimum distances
+      for (cum_count in 1:length(cluster_dist)){
+        # create pdf of distances
+        prob <- cluster_dist[cum_count]/dist_cumsum
+        # initial cdf assigning
+        if (cum_count == 1){
+          cluster_dist_cum_probs[cum_count] <- prob
+        # create rest of cdf
+        }else{
+          cluster_dist_cum_probs[cum_count] <-
+            cluster_dist_cum_probs[cum_count - 1] + prob
+        }
       }
+
+
+      # random sample from uniform distribution
+      # we need to stipulate a random point somewhere in the cdf
+
+      init_samp <- runif(1)
+
+      # centre selected based on cdf
+      # the sample value will have a higher probability of landing on a generally far away distance (clustered points in different cluster to centroids)
+      # since these have the biggest weight/area in the cdf
+      for (cum_count in 1:nrow(data)){
+        # assign centroid based on where it cdf
+        if (init_samp < cluster_dist_cum_probs[cum_count]){
+          cent <- cum_count
+          break
+        }
+      }
+
+      # add centroid
+      centroids[[length(centroids) + 1]] <- data[cent, ]
+
     }
 
-    # add centroid
-    centroids[[length(centroids) + 1]] <- data[cent, ]
+    # format as matrix
+    centroids <- matrix(unlist(centroids), ncol = ncol(data), byrow = TRUE)
 
+    return(centroids)
+  }else{
+    stop("Please choose a valid algorithm or revert to default.")
   }
-
-  # format as matrix
-  centroids <- matrix(unlist(centroids), ncol = ncol(data), byrow = TRUE)
-
-  return(centroids)
 
 }
