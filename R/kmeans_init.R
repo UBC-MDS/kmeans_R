@@ -18,6 +18,8 @@ kmeans_init <- function(data = NULL, K = NULL, algorithm = "k-means++") {
     stop("Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
   }else if(is.null(K) || !is.numeric(K) || (K %% 1) != 0){
     stop("K value is missing or not a numeric integer. Please specify the number of initial values/seeds as an integer.")
+  }else if(K > nrow(data)){
+    stop("Cannot generate more initializing values than available data points. Please select a K value smaller than the number of observations.")
   }
 
   if (K == 0){

@@ -11,20 +11,52 @@ library(kmeansR)
 context("kmeans initialization")
 
 test_that("kmeans_init is a matrix of initialization coordinates", {
+
+
+  # initialize variables
+  set.seed(1234)
+  data_df <- data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
+
+  cluster_borders <- list('x' = quantile(data_df$x, probs = c(0, 0.5, 1)),
+                          'y' = quantile(data_df$y, probs = c(0, 0.5, 1)))
+
+  init_vals <- kmeans_init(data = data_df, K = 2)
+
+  # Missing data object
   expect_error(kmeans_init(data = NULL),
                "Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
- expect_error(kmeans_init(data = data.frame(), K = NULL),
+  # Missing K value
+  expect_error(kmeans_init(data = data.frame(), K = NULL),
                "K value is missing or not a numeric integer. Please specify the number of initial values/seeds as an integer.")
- expect_equal(nrow(kmeans_init(data = data.frame(), K = 0)), 0)
- expect_equal(ncol(kmeans_init(data = data.frame(), K = 0)), 0)
+  # Non-logical K value
+  expect_error(kmeans_init(data = data_df, K = nrow(data_df) + 1),
+               "Cannot generate more initializing values than available data points. Please select a K value smaller than the number of observations.")
 
- # the rest are expected to fail
+  # no initialize values
+  expect_equal(nrow(kmeans_init(data = data.frame(), K = 0)), 0)
+  expect_equal(ncol(kmeans_init(data = data.frame(), K = 0)), 0)
 
- expect_equal(is.matrix(kmeans_init(data = data.frame(x = 1:3, y = 4:6, z = 1:3),
+  # check if output is in correct format and correct size
+  expect_equal(is.matrix(kmeans_init(data = data_df,
                           K = 2)), TRUE)
- expect_equal(nrow(kmeans_init(data = data.frame(x = 1:3, y = 4:6, z = 1:3),
+  expect_equal(nrow(kmeans_init(data = data_df,
                           K = 2)), 2)
- expect_equal(ncol(kmeans_init(data = data.frame(x = 1:3, y = 4:6, z = 1:3),
-                          K = 2)), 3)
+  expect_equal(ncol(kmeans_init(data = data_df,
+                          K = 2)), 2)
+
+
+ # check if initialization values fall within the logical clusters
+
+ expect_equal(all(c(min(init_vals[ ,1]) >= cluster_borders$x[1],
+                min(init_vals[ ,1]) <= cluster_borders$x[2])), TRUE)
+
+ expect_equal(all(c(max(init_vals[ ,1]) >= cluster_borders$x[2],
+                max(init_vals[ ,1]) <= cluster_borders$x[3])), TRUE)
+
+ expect_equal(all(min(init_vals[ ,2]) >= cluster_borders$y[1],
+                min(init_vals[ ,2]) <= cluster_borders$y[2]), TRUE)
+
+ expect_equal(all(max(init_vals[ ,2]) >= cluster_borders$y[2],
+                max(init_vals[ ,2]) <= cluster_borders$y[3]), TRUE)
 
 })
