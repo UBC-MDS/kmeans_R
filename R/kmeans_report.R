@@ -12,6 +12,15 @@
 
 kmeans_report <- function(data, clust_assigns) {
 
+  # check to make sure the data and centers are not NULL
+  if (is.null(data)) {
+    stop("Data object is missing or in the wrong format. Make sure you input a data frame")
+  } else if (is.null(clust_assigns)) {
+    stop("Cluster assignements are in the wrong format. Make sure you input a data frame")
+  } else if (nrow(data) != nrow(clust_assigns)) {
+    stop("The data and cluster assignments are different sizes. Make sure they have the same number of rows.")
+  }
+
   assignment_df <- data %>%
     mutate(cluster = as.factor(as.vector(clust_assigns[,1]))) %>%
     select(cluster, everything())
@@ -29,5 +38,5 @@ kmeans_report <- function(data, clust_assigns) {
 
   }
 
-  return(list(assignment_df, p, summary_df))
+  return(list(assignments=assignment_df, plot=p, summary=summary_df))
 }
