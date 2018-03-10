@@ -14,7 +14,7 @@ devtools::install_github("UBC-MDS/kmeans_R")
 library(kmeansR)
 ```
 
-## Example
+## Usage
 
 Simple example demonstrating the functionality of this package:
 
