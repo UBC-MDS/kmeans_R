@@ -2,7 +2,7 @@
 title: "kmeansR"
 author: "Charley Carriero, Johannes Harmse, Bradley Pick"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: pdf_document
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
@@ -16,7 +16,6 @@ Install this package directly from GitHub:
 
 ```{r message=FALSE}
 devtools::install_github("UBC-MDS/kmeans_R")
-library(kmeansR)
 ```
 
 ## Usage
@@ -24,6 +23,8 @@ library(kmeansR)
 Simple example demonstrating the functionality of this package:
 
 ```{r message=FALSE}
+library(kmeansR)
+
 # generate synthetic data with three clusters
 synth_data <- data.frame(
   x = c(rnorm(20,1,1), rnorm(30,6,3), rnorm(15,10,2)),
