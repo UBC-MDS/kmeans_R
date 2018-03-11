@@ -32,6 +32,6 @@ test_that("kmeans_plot successfully plots the data and cluster assignments", {
                                        clust_assigns = data.frame(x = c(1,2)))$plot), TRUE)
 
   # check that a tibble is returned with summary data
-  expect_equal(is.tibble(kmeans_report(data = data.frame(x = c(1,5), y = c(2,-5), z = c(3,0)),
+  expect_equal(is.data.frame(kmeans_report(data = data.frame(x = c(1,5), y = c(2,-5), z = c(3,0)),
                                        clust_assigns = data.frame(x = c(1,2)))$summary), TRUE)
 })
