@@ -1,26 +1,29 @@
+---
+title: "kmeansR"
+author: "Charley Carriero, Johannes Harmse, Bradley Pick"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-<img src="docs/images/logo_R_crop.png" align="right" border = "10" />
-
-# kmeans_R
-
-[![GitHub issues](https://img.shields.io/github/issues/UBC-MDS/kmeans_R.svg)](https://github.com/UBC-MDS/kmeans_R/issues)
 
 ## Installation
 
 Install this package directly from GitHub:
 
-```
+```{r message=FALSE}
 devtools::install_github("UBC-MDS/kmeans_R")
+library(kmeansR)
 ```
 
 ## Usage
 
 Simple example demonstrating the functionality of this package:
 
-```
-# load package
-library(kmeansR)
-
+```{r message=FALSE}
 # generate synthetic data with three clusters
 synth_data <- data.frame(
   x = c(rnorm(20,1,1), rnorm(30,6,3), rnorm(15,10,2)),
@@ -55,10 +58,3 @@ and the `assignments` as determined by the cluster function. Returns a list cont
 a data frame with original data and assignments, a plot object if data is two dimensional,
 and a summary table containing counts of the number of points in each cluster.
 
-## Contributors
-
-[Bradley Pick](https://github.com/bradleypick)
-
-[Charley Carriero](https://github.com/charcarr)
-
-[Johannes Harmse](https://github.com/johannesharmse)
