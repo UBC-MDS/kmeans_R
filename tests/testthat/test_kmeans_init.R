@@ -84,3 +84,15 @@ test_that("test for correct error handling if invalid seed is provided", {
                           K = 2, algorithm = "rp", seed = 12.12), "Invalid seed has been provided. Please specify seed as integer or omit.")
 })
 
+test_that("test if same seed gives same result", {
+  expect_equal(identical(kmeans_init(data = data_df,
+                          K = 2, algorithm = "rp", seed = 1234), kmeans_init(data = data_df,
+                          K = 2, algorithm = "rp", seed = 1234)), TRUE)
+})
+
+test_that("test if different seeds give different results", {
+  expect_equal(identical(kmeans_init(data = data_df,
+                          K = 2, algorithm = "rp", seed = 1234), kmeans_init(data = data_df,
+                          K = 2, algorithm = "rp", seed = 2)), FALSE)
+})
+
