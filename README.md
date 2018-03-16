@@ -46,7 +46,7 @@ The package integrates and simplifies different functions, such as [kmeans](http
 
 The package includes the following functions:
 
-* `kmeans_init(data, K, algorithm = "kmeans++")` Selects initial values (or seeds) for k-means clustering based on the input `data` object. `K` number of initial values are chosen by applying the specified `algorithm`. Returns a matrix with coordinates for initialization values, where each row is an initialization value and the columns correspond with the columns of the input data object.
+* `kmeans_init(data, K, method = "kmeanspp", seed = NULL)` Selects initial values (or seeds) for k-means clustering based on the input `data` object. `K` number of initial values are chosen by applying the specified `method`. Returns a matrix with coordinates for initialization values, where each row is an initialization value and the columns correspond with the columns of the input data object.
 
 * `kmeans_cluster(data, centers, max_iter=100)` Classifies each observation in `data` by performing k-means clustering. The number of clusters is derived from the number of initial centers specified in `centers`. `max_iter` defaults to 100 and simply places on an upper bound on the number of iterations that take place. Returns a list containing the original data and assigned cluster labels.
 
