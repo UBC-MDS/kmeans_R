@@ -78,3 +78,9 @@ test_that("test if initialization values fall within the logical clusters", {
                 max(init_vals[ ,2]) <= cluster_borders$y[3]), TRUE)
 
 })
+
+test_that("test for correct error handling if invalid seed is provided", {
+  expect_error(kmeans_init(data = data_df,
+                          K = 2, algorithm = "rp", seed = 12.12), "Invalid seed has been provided. Please specify seed as integer or omit.")
+})
+
