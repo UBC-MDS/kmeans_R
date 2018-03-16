@@ -10,7 +10,7 @@
 #` data = data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
 #`
 #` kmeans_init(data = data, K = 2)
-kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeans++") {
+kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeanspp", seed = NULL) {
 
   if (is.null(data) ||
     (!is.data.frame(data) &&
@@ -37,7 +37,7 @@ kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeans++") {
 
   # kmeans++ algorithm
 
-  if (algorithm == 'kmeans++'){
+  if (algorithm == 'kmeanspp'){
     # use first observation as random first centroid starting point
     centroids[[1]] <- data[1, ]
 
@@ -102,7 +102,28 @@ kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeans++") {
     centroids <- matrix(unlist(centroids), ncol = ncol(data), byrow = TRUE)
 
     return(centroids)
-  }else{
+
+  }else if(algorithm == "rp"){
+    # random points algorithm
+
+    if (!is.null(seed)){
+      if (seed%%1 == 0){
+        set.seed(seed)
+      }else{
+        stop("Invalid seed has been provided. Please specify seed as integer or omit.")
+      }
+    }
+
+    # select random rows as initialization values
+    cent <- sample(1:nrow(data), size = K, replace = FALSE)
+
+    # assign centroids by subsetting data
+    centroids <- data[cent, ]
+
+    return(centroids)
+  }
+
+  else{
     stop("Please choose a valid algorithm or revert to default.")
   }
 
