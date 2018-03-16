@@ -10,46 +10,60 @@
 library(kmeansR)
 context("kmeans initialization")
 
-test_that("kmeans_init is a matrix of initialization coordinates", {
+# initialize variables
+set.seed(1234)
+data_df <- data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
 
+cluster_borders <- list('x' = quantile(data_df$x, probs = c(0, 0.5, 1)),
+                        'y' = quantile(data_df$y, probs = c(0, 0.5, 1)))
 
-  # initialize variables
-  set.seed(1234)
-  data_df <- data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
+init_vals <- kmeans_init(data = data_df, K = 2)
 
-  cluster_borders <- list('x' = quantile(data_df$x, probs = c(0, 0.5, 1)),
-                          'y' = quantile(data_df$y, probs = c(0, 0.5, 1)))
-
-  init_vals <- kmeans_init(data = data_df, K = 2)
-
-  # Missing data object
+test_that("test for correct error handling if no data object is given as input", {
   expect_error(kmeans_init(data = NULL),
                "Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
-  # Missing K value
+})
+
+test_that("test for correct error handling if no K value is given as input", {
   expect_error(kmeans_init(data = data.frame(), K = NULL),
                "K value is missing or not a numeric integer. Please specify the number of initial values/seeds as an integer.")
-  # Non-logical K value
+})
+
+test_that("test for correct error handling if K value is given that is larger than the number of data rows", {
   expect_error(kmeans_init(data = data_df, K = nrow(data_df) + 1),
                "Cannot generate more initializing values than available data points. Please select a K value smaller than the number of observations.")
+})
 
-  # Check if valid algorithm has been chosen
+test_that("test for correct error handling if invalid algorithm is given as input", {
   expect_error(kmeans_init(data = data_df, K = 2, algorithm = "blah"),
                "Please choose a valid algorithm or revert to default.")
+})
 
-  # no initialize values
+test_that("test that no rows are returned where empty data object is given as input with zero K value", {
   expect_equal(nrow(kmeans_init(data = data.frame(), K = 0)), 0)
-  expect_equal(ncol(kmeans_init(data = data.frame(), K = 0)), 0)
+})
 
-  # check if output is in correct format and correct size
+test_that("test that no columns are returned where empty data object is given as input with zero K value", {
+  expect_equal(ncol(kmeans_init(data = data.frame(), K = 0)), 0)
+})
+
+test_that("test if returned object is matrix given valid input", {
   expect_equal(is.matrix(kmeans_init(data = data_df,
                           K = 2)), TRUE)
+})
+
+test_that("test if returned object has same number of rows as input K value", {
   expect_equal(nrow(kmeans_init(data = data_df,
                           K = 2)), 2)
+})
+
+test_that("test if returned object has same number of columns as input data object", {
   expect_equal(ncol(kmeans_init(data = data_df,
                           K = 2)), 2)
+})
 
 
- # check if initialization values fall within the logical clusters
+test_that("test if initialization values fall within the logical clusters", {
 
  expect_equal(all(c(min(init_vals[ ,1]) >= cluster_borders$x[1],
                 min(init_vals[ ,1]) <= cluster_borders$x[2])), TRUE)
