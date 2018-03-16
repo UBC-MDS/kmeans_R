@@ -12,8 +12,8 @@
 
 kmeans_report <- function(data, clust_assigns) {
 
-  library(dplyr)
-  library(ggplot2)
+  suppressPackageStartupMessages(library(dplyr))
+  suppressPackageStartupMessages(library(ggplot2))
   # check to make sure the data and centers are not NULL
   if (is.null(data)) {
     stop("Data object is missing or in the wrong format. Make sure you input a data frame")
