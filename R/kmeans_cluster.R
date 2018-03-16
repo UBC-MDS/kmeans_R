@@ -2,16 +2,16 @@
 #`
 #`
 #` @param data  - the data object (data frame or matrix) that k-means clustering will be applied to.
-#` @param centers - the matrix containing the initial centers as computed by kmeans++
+#` @param centers - the matrix containing the initial centers as computed by kmeans_init
 #` @return - the cluster assignments and the data object stored in a list
 #`
 #`
 kmeans_cluster <- function(data, centers, max_iter=100) {
 
-  # check to make sure the data and centers are not NULL
-  if (is.null(data)) {
+  # check to make sure the data and centers are data frame or matrix
+  if (!is.data.frame(data) & !is.matrix(data)) {
     stop("Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
-  } else if (is.null(centers)) {
+  } else if (!is.data.frame(centers) & !is.matrix(centers)) {
     stop("Centers object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
   }
 
@@ -44,8 +44,8 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
 
     # check if assignments changed since last time
     if (isTRUE(all.equal(cur_assign, last_assign))) {
-      return(list(assignments=data.frame(assignments=cur_assign),
-                  data=as.data.frame(data)))
+      return(cbind(data.frame(assignments=cur_assign),
+                   as.data.frame(data)))
     }
 
     # move current assignments to last assignments
@@ -53,7 +53,7 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
   }
   # warn the user if we didn't converge in max_iter number of iterations
   warning("Did not converge in specified number of iterations")
-  return(list(assignments=data.frame(assignments=cur_assign),
-              data=as.data.frame(data)))
+  return(cbind(data.frame(assignments=cur_assign),
+               as.data.frame(data)))
 
 }
