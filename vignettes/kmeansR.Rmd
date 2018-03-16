@@ -3,8 +3,8 @@ title: "kmeansR"
 author: "Charley Carriero, Johannes Harmse, Bradley Pick"
 date: '`r Sys.Date()`'
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 vignette: |
   %\VignetteIndexEntry{Vignette Title} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
 ---
@@ -52,7 +52,7 @@ The package includes the following functions:
 
 * `kmeans_init(data, K, method = "kmeanspp", seed = NULL)` Selects initial values (or seeds) for k-means clustering based on the input `data` object. `K` number of initial values are chosen by applying the specified `method`. Returns a matrix with coordinates for initialization values, where each row is an initialization value and the columns correspond with the columns of the input data object.
 
-* `kmeans_cluster(data, centers, max_iter=100)` Classifies each observation in `data` by performing k-means clustering. The number of clusters is derived from the number of initial centers specified in `centers`. `max_iter` defaults to 100 and simply places on an upper bound on the number of iterations that take place. Returns a list containing the original data and assigned cluster labels.
+* `kmeans_cluster(data, centers, max_iter=100)` Classifies each observation in `data` by performing k-means clustering. The number of clusters is derived from the number of initial centers specified in `centers`. `max_iter` defaults to 100 and simply places on an upper bound on the number of iterations that take place. Returns a data frame containing the original data and a column of assigned cluster labels.
 
 * `kmeans_report(data, assignments)` Visualizes clustered data using original `data`
 and the `assignments` as determined by the cluster function. Returns a list containing

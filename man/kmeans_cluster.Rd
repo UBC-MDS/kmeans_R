@@ -13,12 +13,14 @@ kmeans_cluster(data, centers, max_iter=100)
   \item{max_iter}{The maximum number of iterations to perform.}
 }
 \value{
-A list containing cluster assignments and the original data frame
+A data frame containing column of cluster assignments and the original data 
 }
 \examples{
 
 # create input data object with two distinct clusters
-data = data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
+x <- runif(100, min = 0, max = 10) + rep(c(0, 10), 50)
+y <- rnorm(100, 5, 1) + rep(c(0, 10), 50)
+data = data.frame(x = x, y = y)
 
 centers <- kmeans_init(data = data, K = 2)
 kmeans_cluster(data=data, centers=centers)
