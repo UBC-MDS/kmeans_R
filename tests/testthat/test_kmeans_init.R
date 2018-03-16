@@ -34,9 +34,9 @@ test_that("test for correct error handling if K value is given that is larger th
                "Cannot generate more initializing values than available data points. Please select a K value smaller than the number of observations.")
 })
 
-test_that("test for correct error handling if invalid algorithm is given as input", {
-  expect_error(kmeans_init(data = data_df, K = 2, algorithm = "blah"),
-               "Please choose a valid algorithm or revert to default.")
+test_that("test for correct error handling if invalid method is given as input", {
+  expect_error(kmeans_init(data = data_df, K = 2, method = "blah"),
+               "Please choose a valid method or revert to default.")
 })
 
 test_that("test that no rows are returned where empty data object is given as input with zero K value", {
@@ -81,18 +81,18 @@ test_that("test if initialization values fall within the logical clusters", {
 
 test_that("test for correct error handling if invalid seed is provided", {
   expect_error(kmeans_init(data = data_df,
-                          K = 2, algorithm = "rp", seed = 12.12), "Invalid seed has been provided. Please specify seed as integer or omit.")
+                          K = 2, method = "rp", seed = 12.12), "Invalid seed has been provided. Please specify seed as integer or omit.")
 })
 
 test_that("test if same seed gives same result", {
   expect_equal(identical(kmeans_init(data = data_df,
-                          K = 2, algorithm = "rp", seed = 1234), kmeans_init(data = data_df,
-                          K = 2, algorithm = "rp", seed = 1234)), TRUE)
+                          K = 2, method = "rp", seed = 1234), kmeans_init(data = data_df,
+                          K = 2, method = "rp", seed = 1234)), TRUE)
 })
 
 test_that("test if different seeds give different results", {
   expect_equal(identical(kmeans_init(data = data_df,
-                          K = 2, algorithm = "rp", seed = 1234), kmeans_init(data = data_df,
-                          K = 2, algorithm = "rp", seed = 2)), FALSE)
+                          K = 2, method = "rp", seed = 1234), kmeans_init(data = data_df,
+                          K = 2, method = "rp", seed = 2)), FALSE)
 })
 

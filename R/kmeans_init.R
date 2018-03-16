@@ -3,14 +3,14 @@
 #`
 #` @param data the data object (data frame or matrix) that k-means clustering will be applied to.
 #` @param K the number of initial values to be chosen. Should correspond to the number of clusters to be chosen.
-#` @param algorithm the initialisation algorithm specified as a string.
+#` @param method the initialisation method specified as a string.
 #` @return A matrix with coordinates for initialization values, where each row is an initialization value and the columns correspond with the columns of the input data object.
 #` @examples
 #` # create input data object with two distinct clusters
 #` data = data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
 #`
 #` kmeans_init(data = data, K = 2)
-kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeanspp", seed = NULL) {
+kmeans_init <- function(data = NULL, K = NULL, method = "kmeanspp", seed = NULL) {
 
   if (is.null(data) ||
     (!is.data.frame(data) &&
@@ -35,9 +35,9 @@ kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeanspp", seed = NU
   centroids <- list()
 
 
-  # kmeans++ algorithm
+  # kmeans++ method
 
-  if (algorithm == 'kmeanspp'){
+  if (method == 'kmeanspp'){
     # use first observation as random first centroid starting point
     centroids[[1]] <- data[1, ]
 
@@ -103,8 +103,8 @@ kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeanspp", seed = NU
 
     return(centroids)
 
-  }else if(algorithm == "rp"){
-    # random points algorithm
+  }else if(method == "rp"){
+    # random points method
 
     if (!is.null(seed)){
       if (seed%%1 == 0){
@@ -124,7 +124,7 @@ kmeans_init <- function(data = NULL, K = NULL, algorithm = "kmeanspp", seed = NU
   }
 
   else{
-    stop("Please choose a valid algorithm or revert to default.")
+    stop("Please choose a valid method or revert to default.")
   }
 
 }
