@@ -53,6 +53,11 @@ test_that("test if returned object is matrix given valid input", {
                           K = 2)), TRUE)
 })
 
+test_that("test if returned object has same number of rows as input K value for K = 1", {
+  expect_equal(nrow(kmeans_init(data = data_df,
+                          K = 1)), 1)
+})
+
 test_that("test if returned object has same number of rows as input K value", {
   expect_equal(nrow(kmeans_init(data = data_df,
                           K = 2)), 2)
