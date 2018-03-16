@@ -26,7 +26,7 @@ test_that("test for correct error handling if no data object is given as input",
 
 test_that("test for correct error handling if no K value is given as input", {
   expect_error(kmeans_init(data = data.frame(), K = NULL),
-               "K value is missing or not a numeric integer. Please specify the number of initial values/seeds as an integer.")
+               "K value is missing or not a numeric integer. Please specify the number of initial values as an integer.")
 })
 
 test_that("test for correct error handling if K value is given that is larger than the number of data rows", {
@@ -39,13 +39,14 @@ test_that("test for correct error handling if invalid method is given as input",
                "Please choose a valid method or revert to default.")
 })
 
-test_that("test that no rows are returned where empty data object is given as input with zero K value", {
-  expect_equal(nrow(kmeans_init(data = data.frame(), K = 0)), 0)
+test_that("test for correct error handling if K value is zero.", {
+  expect_error(kmeans_init(data = data.frame(), K = 0),
+               "K value cannot be 0. Please specify the number of initial values as an integer larger than 0.")
 })
 
-test_that("test that no columns are returned where empty data object is given as input with zero K value", {
-  expect_equal(ncol(kmeans_init(data = data.frame(), K = 0)), 0)
-})
+# test_that("test that no columns are returned where empty data object is given as input with zero K value", {
+#   expect_equal(ncol(kmeans_init(data = data.frame(), K = 0)), 0)
+# })
 
 test_that("test if returned object is matrix given valid input", {
   expect_equal(is.matrix(kmeans_init(data = data_df,

@@ -17,13 +17,14 @@ kmeans_init <- function(data = NULL, K = NULL, method = "kmeanspp", seed = NULL)
       !is.matrix(data))){
     stop("Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
   }else if(is.null(K) || !is.numeric(K) || (K %% 1) != 0){
-    stop("K value is missing or not a numeric integer. Please specify the number of initial values/seeds as an integer.")
+    stop("K value is missing or not a numeric integer. Please specify the number of initial values as an integer.")
   }else if(K > nrow(data)){
     stop("Cannot generate more initializing values than available data points. Please select a K value smaller than the number of observations.")
   }
 
   if (K == 0){
-    return(matrix(numeric(0), ncol = ncol(data), byrow = TRUE))
+    stop("K value cannot be 0. Please specify the number of initial values as an integer larger than 0.")
+    # return(matrix(numeric(0), ncol = ncol(data), byrow = TRUE))
   }
 
   # format as matrix in case of data frame
