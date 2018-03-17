@@ -1,3 +1,5 @@
+#' @export kmeans_cluster
+NULL
 #' k-means clustering
 #'
 #'
@@ -5,7 +7,8 @@
 #' @param centers - the matrix containing the initial centers as computed by kmeans_init
 #' @return - the cluster assignments and the data object stored in a list
 #'
-#'
+
+
 kmeans_cluster <- function(data, centers, max_iter=100) {
 
   # check to make sure the data and centers are data frame or matrix

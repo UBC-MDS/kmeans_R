@@ -1,3 +1,6 @@
+#' @export kmeans_init
+NULL
+
 #' Choose Initial K-Means Values
 #'
 #'
@@ -11,6 +14,8 @@
 #' data = data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
 #'
 #' kmeans_init(data = data, K = 2)
+#'
+
 kmeans_init <- function(data = NULL, K = NULL, method = "kmeanspp", seed = NULL) {
 
   if (is.null(data) ||
