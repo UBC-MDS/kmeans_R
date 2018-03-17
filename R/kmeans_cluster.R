@@ -3,9 +3,17 @@ NULL
 #' k-means clustering
 #'
 #'
-#' @param data  - the data object (data frame or matrix) that k-means clustering will be applied to.
-#' @param centers - the matrix containing the initial centers as computed by kmeans_init
-#' @return - the cluster assignments and the data object stored in a list
+#' @param data  - The data object (data frame or matrix) that k-means clustering will be applied to.
+#' @param centers - The matrix containing the initial centers as computed by kmeans_init.
+#' @return - The data object (as a data frame) with a column containing cluster assignments.
+#'
+#' @examples
+#' x <- runif(100, min = 0, max = 10) + rep(c(0, 10), 50)
+#' y <- rnorm(100, 5, 1) + rep(c(0, 10), 50)
+#' data = data.frame(x = x, y = y)
+#'
+#' centers <- kmeans_init(data = data, K = 2)
+#' kmeans_cluster(data=data, centers=centers)
 #'
 
 
@@ -47,7 +55,7 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
 
     # check if assignments changed since last time
     if (isTRUE(all.equal(cur_assign, last_assign))) {
-      return(cbind(data.frame(assignments=cur_assign),
+      return(cbind(data.frame(cluster=cur_assign),
                    as.data.frame(data)))
     }
 
@@ -56,7 +64,7 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
   }
   # warn the user if we didn't converge in max_iter number of iterations
   warning("Did not converge in specified number of iterations")
-  return(cbind(data.frame(assignments=cur_assign),
+  return(cbind(data.frame(cluster=cur_assign),
                as.data.frame(data)))
 
 }

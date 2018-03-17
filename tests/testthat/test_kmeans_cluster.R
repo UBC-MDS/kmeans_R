@@ -73,7 +73,7 @@ test_that("Example where the resulting assignments can be computed by hand", {
                                      z = c(3,0,3)),
                    centers = data.frame(x = c(1,5),
                                         y = c(2,-5),
-                                        z = c(3,0)))$assignments,
+                                        z = c(3,0)))$cluster,
     c(1,2,1))
 })
 
