@@ -1,11 +1,11 @@
-#` Choose Initial K-Means Values
-#`
-#`
-#` @param data  - the data object (data frame or matrix) that k-means clustering will be applied to.
-#` @param centers - the matrix containing the initial centers as computed by kmeans_init
-#` @return - the cluster assignments and the data object stored in a list
-#`
-#`
+#' k-means clustering
+#'
+#'
+#' @param data  - the data object (data frame or matrix) that k-means clustering will be applied to.
+#' @param centers - the matrix containing the initial centers as computed by kmeans_init
+#' @return - the cluster assignments and the data object stored in a list
+#'
+#'
 kmeans_cluster <- function(data, centers, max_iter=100) {
 
   # check to make sure the data and centers are data frame or matrix

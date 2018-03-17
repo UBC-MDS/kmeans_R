@@ -8,17 +8,14 @@
 #'
 #' example:
 #' kmeans_report(data = data, clust_assigns = clusters)
-#'
-#' @import tidyverse
 
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(ggplot2))
 
 kmeans_report <- function(data, clust_assigns) {
 
   # library(dplyr)
   # library(ggplot2)
-
-  # suppressPackageStartupMessages(library(dplyr))
-  # suppressPackageStartupMessages(library(ggplot2))
 
   #devtools::use_package("dplyr")
   #devtools::use_package("ggplot2")
