@@ -1,5 +1,6 @@
 #' @import dplyr
 #' @import ggplot2
+#' @import magrittr
 #'
 #' @export kmeans_report
 NULL
@@ -15,7 +16,7 @@ NULL
 #' kmeans_report(data = data, clust_assigns = clusters)
 #'
 
-library(magrittr)
+# library(magrittr)
 
 #suppressPackageStartupMessages(library(dplyr))
 #suppressPackageStartupMessages(library(ggplot2))
