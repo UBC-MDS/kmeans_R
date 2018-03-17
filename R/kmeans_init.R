@@ -1,6 +1,3 @@
-#' @export kmeans_init
-NULL
-
 #' Choose Initial K-Means Values
 #'
 #'
@@ -15,6 +12,7 @@ NULL
 #'
 #' kmeans_init(data = data, K = 2)
 #'
+#' @export kmeans_init
 
 kmeans_init <- function(data = NULL, K = NULL, method = "kmeanspp", seed = NULL) {
 
