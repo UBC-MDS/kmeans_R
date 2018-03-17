@@ -3,9 +3,9 @@ Type: Package
 Title:R package aimed towards a user-friendly way of exploring and implementing k-means clustering.
 Version: 0.1.0
 Authors@R: c(
-    person("Bradley", "Pick", role = c("aut", "cre")), 
-    person("Charley", "Carriero", role = c("aut", "cre")),
-    person("Johannes", "Harmse", role = c("aut", "cre"))
+    person("Bradley", "Pick", role = c("aut")), 
+    person("Charley", "Carriero", role = c("aut")),
+    person("Johannes", "Harmse", email = "johannesharmse91@gmail.com", role = c("aut", "cre"))
     )
 Description: The package offers simple and easy to use functions 
     that perform k-means clustering. In particular, the different 
