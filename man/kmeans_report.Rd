@@ -14,9 +14,6 @@ kmeans_report(data, clust_assigns)
 \value{
 plot -- a scatter plot of the data coloured by cluster assignment (if 2D data)
              -- a data frame reporting points and their cluster assignemnts
-
-example:
-kmeans_report(data = data, clust_assigns = clusters)
 }
 \description{
 Plot data according to cluster assigments

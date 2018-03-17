@@ -1,5 +1,3 @@
-#' @export kmeans_cluster
-NULL
 #' k-means clustering
 #'
 #'
@@ -15,8 +13,7 @@ NULL
 #' centers <- kmeans_init(data = data, K = 2)
 #' kmeans_cluster(data=data, centers=centers)
 #'
-
-
+#' @export
 kmeans_cluster <- function(data, centers, max_iter=100) {
 
   # check to make sure the data and centers are data frame or matrix
