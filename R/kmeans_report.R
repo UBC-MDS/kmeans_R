@@ -1,9 +1,3 @@
-#' @import dplyr
-#' @import ggplot2
-#' @import magrittr
-#'
-#' @export kmeans_report
-NULL
 #' Plot data according to cluster assigments
 #'
 #'
@@ -12,15 +6,14 @@ NULL
 #' @return plot -- a scatter plot of the data coloured by cluster assignment (if 2D data)
 #'              -- a data frame reporting points and their cluster assignemnts
 #'
-#' example:
+#' @examples
 #' kmeans_report(data = data, clust_assigns = clusters)
 #'
-
-# library(magrittr)
-
-#suppressPackageStartupMessages(library(dplyr))
-#suppressPackageStartupMessages(library(ggplot2))
-
+#' @import dplyr
+#' @import ggplot2
+#' @import magrittr
+#'
+#' @export
 kmeans_report <- function(data, clust_assigns) {
   # require(dplyr)
   # require(ggplot2)

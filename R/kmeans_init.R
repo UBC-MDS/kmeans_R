@@ -1,6 +1,3 @@
-#' @export kmeans_init
-NULL
-
 #' Choose Initial K-Means Values
 #'
 #'
@@ -21,7 +18,7 @@ NULL
 #'
 #' # random points initialization method with seed set
 #' kmeans_init(data = data, K = 2, method = "rp", seed = 1234)
-
+#' @export
 kmeans_init <- function(data = NULL, K = NULL, method = "kmeanspp", seed = NULL) {
 
   if (is.null(data) ||
