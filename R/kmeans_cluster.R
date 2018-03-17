@@ -10,9 +10,9 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
 
   # check to make sure the data and centers are data frame or matrix
   if (!is.data.frame(data) & !is.matrix(data)) {
-    stop("Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
+    stop("Data object is missing or in the wrong format.")
   } else if (!is.data.frame(centers) & !is.matrix(centers)) {
-    stop("Centers object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
+    stop("Centers object is missing or in the wrong format.")
   }
 
   # convert them to matrices because mix of df and mat is gross
