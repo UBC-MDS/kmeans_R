@@ -26,6 +26,9 @@ kmeans_report <- function(clustered_data) {
     stop("Data object is missing or in the wrong format.")
   }
 
+  clustered_data <- dplyr::mutate(clustered_data,
+                                  cluster = as.factor(cluster))
+
   summary_df <- clustered_data %>%
     dplyr::group_by(cluster) %>%
     dplyr::summarise(count = n())
