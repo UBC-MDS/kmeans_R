@@ -9,8 +9,7 @@
 #' example:
 #' kmeans_report(data = data, clust_assigns = clusters)
 #'
-#' @import dplyr
-#' @import ggplot2
+#' @import tidyverse
 
 
 kmeans_report <- function(data, clust_assigns) {
