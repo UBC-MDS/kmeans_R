@@ -4,12 +4,10 @@
 \alias{kmeans_report}
 \title{Plot data according to cluster assigments}
 \usage{
-kmeans_report(data, clust_assigns)
+kmeans_report(clustered_data)
 }
 \arguments{
-\item{data}{-- the data object (data frame or matrix) that k-means clustering has been applied to}
-
-\item{clust_assigns}{-- cluster assignments that correspond to each data point}
+\item{clustered_data}{-- the data object (data frame or matrix) that k-means clustering has been applied to}
 }
 \value{
 plot -- a scatter plot of the data coloured by cluster assignment (if 2D data)
@@ -17,4 +15,14 @@ plot -- a scatter plot of the data coloured by cluster assignment (if 2D data)
 }
 \description{
 Plot data according to cluster assigments
+}
+\examples{
+x <- runif(100, min = 0, max = 10) + rep(c(0, 10), 50)
+y <- rnorm(100, 5, 1) + rep(c(0, 10), 50)
+data = data.frame(x = x, y = y)
+
+centers <- kmeans_init(data = data, K = 2)
+clustered_data <- kmeans_cluster(data=data, centers=centers)
+kmeans_report(clustered_data)
+
 }
