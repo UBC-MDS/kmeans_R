@@ -22,6 +22,9 @@ NULL
 #suppressPackageStartupMessages(library(ggplot2))
 
 kmeans_report <- function(data, clust_assigns) {
+  # require(dplyr)
+  # require(ggplot2)
+  # require(magrittr)
 
   # library(dplyr)
   # library(ggplot2)
