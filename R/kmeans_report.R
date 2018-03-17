@@ -16,9 +16,9 @@ kmeans_report <- function(data, clust_assigns) {
   suppressPackageStartupMessages(library(ggplot2))
   # check to make sure the data and centers are not NULL
   if (is.null(data)) {
-    stop("Data object is missing or in the wrong format. Make sure you input a data frame")
+    stop("Data object is missing or in the wrong format.")
   } else if (is.null(clust_assigns)) {
-    stop("Cluster assignements are in the wrong format. Make sure you input a data frame")
+    stop("Cluster assignements are in the wrong format.")
   } else if(nrow(data) != nrow(clust_assigns)) {
     stop("Data and cluster assignmenments must be the same length!")
   }
@@ -32,7 +32,9 @@ kmeans_report <- function(data, clust_assigns) {
     summarise(count = n())
 
   if (ncol(data) == 2) {
-    p <- ggplot(assignment_df, aes(x = assignment_df[,2], y = assignment_df[,3], colour = cluster)) +
+    p <- ggplot(assignment_df, aes(x = assignment_df[,2],
+                                   y = assignment_df[,3],
+                                   colour = cluster)) +
       geom_point() +
       labs(x = "X", y = "Y", title = "cluster assignments" ) +
       scale_colour_discrete() +
