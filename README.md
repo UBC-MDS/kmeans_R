@@ -10,7 +10,7 @@
 
 Install this package directly from GitHub:
 
-```
+``` r
 devtools::install_github("UBC-MDS/kmeans_R")
 ```
 
@@ -18,25 +18,37 @@ devtools::install_github("UBC-MDS/kmeans_R")
 
 Simple example demonstrating the functionality of this package:
 
+``` r
+# load package                                                   
+library(kmeansR)                                                 
+
+# generate synthetic data with three clusters                    
+synth_data <- data.frame(                                        
+x = c(rnorm(20,1,1), rnorm(30,6,3), rnorm(15,10,2)),             
+y = c(rnorm(20,5,2), rnorm(30,2,2), rnorm(15,8,3))               
+)                                                                
+
+# initialize the cluster centers                                 
+centers <- kmeans_init(data = synth_data, K = 3)                 
+# cluster the data points                                        
+clustered <- kmeans_cluster(data = synth_data, centers = centers)
+# generate summary results                                       
+report <- kmeans_report(clustered_data = clustered)              
+
+# plot the clustered data                                        
+report$plot                                                      
 ```
-# load package
-library(kmeansR)
 
-# generate synthetic data with three clusters
-synth_data <- data.frame(
-  x = c(rnorm(20,1,1), rnorm(30,6,3), rnorm(15,10,2)),
-  y = c(rnorm(20,5,2), rnorm(30,2,2), rnorm(15,8,3))
-)
+![](https://i.imgur.com/GR92mzl.png)
 
-# initialize the cluster centers
-centers <- kmeans_init(data= synth_data, K = 3)
-# cluster the data points
-clusters <- kmeans_cluster(data = synth_data, centers = centers)
-# generate summary results
-report <- kmeans_report(synth_data, clusters$assignments)
-
-# plot the clustered data
-report$plot
+``` r
+report$summary                                                   
+#> # A tibble: 3 x 2
+#>   cluster count
+#>   <fct>   <int>
+#> 1 1          31
+#> 2 2          12
+#> 3 3          22
 ```
 
 ## Overview
@@ -63,8 +75,8 @@ The package includes the following functions:
 
 * `kmeans_cluster(data, centers, max_iter=100)` Classifies each observation in `data` by performing k-means clustering. The number of clusters is derived from the number of initial centers specified in `centers`. `max_iter` defaults to 100 and simply places an upper bound on the number of iterations that take place. Returns a data frame containing the original data and new column of assigned cluster labels.
 
-* `kmeans_report(data, assignments)` Visualizes clustered data using original `data`
-and the `assignments` as determined by the cluster function. Returns a list containing
+* `kmeans_report(clustered_data)` Visualizes clustered data using the `clustered_data`
+as computed by the cluster function. Returns a list containing
 a data frame with original data and assignments, a plot object if data is two dimensional,
 and a summary table containing counts of the number of points in each cluster.
 
