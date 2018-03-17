@@ -1,5 +1,6 @@
 #' @import dplyr
 #' @import ggplot2
+#' @import magrittr
 #'
 #' @export kmeans_report
 NULL
@@ -15,12 +16,15 @@ NULL
 #' kmeans_report(data = data, clust_assigns = clusters)
 #'
 
-library(magrittr)
+# library(magrittr)
 
 #suppressPackageStartupMessages(library(dplyr))
 #suppressPackageStartupMessages(library(ggplot2))
 
 kmeans_report <- function(data, clust_assigns) {
+  # require(dplyr)
+  # require(ggplot2)
+  # require(magrittr)
 
   # library(dplyr)
   # library(ggplot2)
