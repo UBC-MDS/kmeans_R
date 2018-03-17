@@ -8,9 +8,15 @@
 #'
 #' example:
 #' kmeans_report(data = data, clust_assigns = clusters)
+#'
+#' @import dplyr
+#' @import ggplot2
+#'
 
-suppressPackageStartupMessages(library(dplyr))
-suppressPackageStartupMessages(library(ggplot2))
+library(magrittr)
+
+#suppressPackageStartupMessages(library(dplyr))
+#suppressPackageStartupMessages(library(ggplot2))
 
 kmeans_report <- function(data, clust_assigns) {
 
@@ -30,21 +36,22 @@ kmeans_report <- function(data, clust_assigns) {
   }
 
   assignment_df <- data %>%
-    mutate(cluster = as.factor(as.vector(clust_assigns[,1]))) %>%
-    select(cluster, everything())
+    dplyr::mutate(cluster = as.factor(as.vector(clust_assigns[,1]))) %>%
+    dplyr::select(cluster, dplyr::everything())
 
   summary_df <- assignment_df %>%
-    group_by(cluster) %>%
-    summarise(count = n())
+    dplyr::group_by(cluster) %>%
+    dplyr::summarise(count = n())
 
   if (ncol(data) == 2) {
-    p <- ggplot(assignment_df, aes(x = assignment_df[,2],
-                                   y = assignment_df[,3],
-                                   colour = cluster)) +
-      geom_point() +
-      labs(x = "X", y = "Y", title = "cluster assignments" ) +
-      scale_colour_discrete() +
-      theme_minimal()
+    p <- ggplot2::ggplot(assignment_df,
+                         ggplot2::aes(x = assignment_df[,2],
+                                      y = assignment_df[,3],
+                                      colour = cluster)) +
+      ggplot2::geom_point() +
+      ggplot2::labs(x = "X", y = "Y", title = "cluster assignments" ) +
+      ggplot2::scale_colour_discrete() +
+      ggplot2::theme_minimal()
 
     return(list(assignments=assignment_df, plot=p, summary=summary_df))
 
