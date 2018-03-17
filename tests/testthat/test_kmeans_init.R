@@ -12,26 +12,27 @@ context("kmeans initialization")
 
 # initialize variables
 set.seed(1234)
-data_df <- data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
+data_df <- data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50),
+                      y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
 
 cluster_borders <- list('x' = quantile(data_df$x, probs = c(0, 0.5, 1)),
                         'y' = quantile(data_df$y, probs = c(0, 0.5, 1)))
 
 init_vals <- kmeans_init(data = data_df, K = 2)
 
-test_that("test for correct error handling if no data object is given as input", {
+test_that("Correct error handling if no data object is given as input", {
   expect_error(kmeans_init(data = NULL),
-               "Data object is missing or in the wrong format. Make sure you input a matrix or data frame data object")
+               "Data object is missing or in the wrong format.")
 })
 
-test_that("test for correct error handling if no K value is given as input", {
+test_that("Correct error handling if no K value is given as input", {
   expect_error(kmeans_init(data = data.frame(), K = NULL),
-               "K value is missing or not a numeric integer. Please specify the number of initial values as an integer.")
+               "K value is missing or not a numeric integer.")
 })
 
-test_that("test for correct error handling if K value is given that is larger than the number of data rows", {
+test_that("Correct error handling if K  is larger than the number of data rows", {
   expect_error(kmeans_init(data = data_df, K = nrow(data_df) + 1),
-               "Cannot generate more initializing values than available data points. Please select a K value smaller than the number of observations.")
+               "Cannot generate more initializing values than available data points.")
 })
 
 test_that("test for correct error handling if invalid method is given as input", {
@@ -41,7 +42,7 @@ test_that("test for correct error handling if invalid method is given as input",
 
 test_that("test for correct error handling if K value is zero.", {
   expect_error(kmeans_init(data = data.frame(), K = 0),
-               "K value cannot be 0. Please specify the number of initial values as an integer larger than 0.")
+               "K value cannot be 0.")
 })
 
 # test_that("test that no columns are returned where empty data object is given as input with zero K value", {
@@ -87,7 +88,8 @@ test_that("test if initialization values fall within the logical clusters", {
 
 test_that("test for correct error handling if invalid seed is provided", {
   expect_error(kmeans_init(data = data_df,
-                          K = 2, method = "rp", seed = 12.12), "Invalid seed has been provided. Please specify seed as integer or omit.")
+                          K = 2, method = "rp", seed = 12.12),
+               "Invalid seed has been provided. Please specify seed as integer or omit.")
 })
 
 test_that("test if same seed gives same result", {
