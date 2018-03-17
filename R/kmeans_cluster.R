@@ -47,7 +47,7 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
 
     # check if assignments changed since last time
     if (isTRUE(all.equal(cur_assign, last_assign))) {
-      return(cbind(data.frame(assignments=cur_assign),
+      return(cbind(data.frame(cluster=cur_assign),
                    as.data.frame(data)))
     }
 
@@ -56,7 +56,7 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
   }
   # warn the user if we didn't converge in max_iter number of iterations
   warning("Did not converge in specified number of iterations")
-  return(cbind(data.frame(assignments=cur_assign),
+  return(cbind(data.frame(cluster=cur_assign),
                as.data.frame(data)))
 
 }
