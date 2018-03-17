@@ -6,6 +6,7 @@
 #  - checks that a plot file is actually produced and saved
 
 library(kmeansR)
+library(ggplot2)
 context("report kmeans findings")
 
 test_that("kmeans_plot successfully plots the data and cluster assignments", {
