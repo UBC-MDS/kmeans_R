@@ -14,3 +14,4 @@ Suggests: testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Remotes: github::hadley/dplyr, github::hadley/ggplot2
