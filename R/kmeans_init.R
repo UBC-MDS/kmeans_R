@@ -4,6 +4,7 @@
 #` @param data the data object (data frame or matrix) that k-means clustering will be applied to.
 #` @param K the number of initial values to be chosen. Should correspond to the number of clusters to be chosen.
 #` @param method "kmeanspp" or "rp". The initialisation method specified as a string. "kmeanspp" refers to kmeans++ method and "rp" refers to random points method. More information on kmeans initialization methods can be found \href{https://arxiv.org/pdf/1209.1960.pdf}{here}.
+#` @param seed the seed to be set if "rp" is specified as method. If NULL, no seed will be set.
 #` @return A matrix with coordinates for initialization values, where each row is an initialization value and the columns correspond with the columns of the input data object.
 #` @examples
 #` # create input data object with two distinct clusters

@@ -1,19 +1,28 @@
-#` Plot data according to cluster assigments
-#`
-#`
-#` @param data -- the data object (data frame or matrix) that k-means clustering has been applied to
-#` @param clust_assigns -- cluster assignments that correspond to each data point
-#` @return plot -- a scatter plot of the data coloured by cluster assignment (if 2D data)
-#`              -- a data frame reporting points and their cluster assignemnts
-#`
-#` example:
-#` kmeans_report(data = data, clust_assigns = clusters)
-#`
+#' Plot data according to cluster assigments
+#'
+#'
+#' @param data -- the data object (data frame or matrix) that k-means clustering has been applied to
+#' @param clust_assigns -- cluster assignments that correspond to each data point
+#' @return plot -- a scatter plot of the data coloured by cluster assignment (if 2D data)
+#'              -- a data frame reporting points and their cluster assignemnts
+#'
+#' example:
+#' kmeans_report(data = data, clust_assigns = clusters)
+#'
+#' @import tidyverse
+
 
 kmeans_report <- function(data, clust_assigns) {
 
-  suppressPackageStartupMessages(library(dplyr))
-  suppressPackageStartupMessages(library(ggplot2))
+  # library(dplyr)
+  # library(ggplot2)
+
+  # suppressPackageStartupMessages(library(dplyr))
+  # suppressPackageStartupMessages(library(ggplot2))
+
+  #devtools::use_package("dplyr")
+  #devtools::use_package("ggplot2")
+
   # check to make sure the data and centers are not NULL
   if (is.null(data)) {
     stop("Data object is missing or in the wrong format.")
