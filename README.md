@@ -1,8 +1,9 @@
 
-<img src="docs/images/logo_R_crop.png" align="right" border = "10" />
+<img src="docs/images/logo_R_crop.png" align="right" border = "10" width="300" height="300"/>
 
 # kmeans_R
 
+[![Build Status](https://travis-ci.org/UBC-MDS/kmeans_R.svg?branch=master)](https://travis-ci.org/UBC-MDS/kmeans_R)
 [![GitHub issues](https://img.shields.io/github/issues/UBC-MDS/kmeans_R.svg)](https://github.com/UBC-MDS/kmeans_R/issues)
 
 ## Installation
@@ -40,15 +41,27 @@ report$plot
 
 ## Overview
 
-**kmeans_R** is an R package aimed towards a user-friendly way of exploring and implementing k-means clustering.
+**kmeans_R** is an R package aimed towards a user-friendly way of exploring and
+implementing [k-means clustering](https://en.wikipedia.org/wiki/K-means_clustering).
 
-The package integrates and simplifies different functions, such as [kmeans](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/kmeans.html) and [KMeans_rcpp](https://cran.r-project.org/web/packages/ClusterR/ClusterR.pdf), into one easy-to-use package.
+The package offers simple and easy to use functions that perform k-means clustering.
+In particular, the different stages of clustering are broken up into separate
+functions (initialization, clustering, and plotting). This allows the user
+to investigate exactly what is going on at each step, which promotes an
+understanding of this disparate aspects of the clustering procedure.
+Furthermore, the plotting (perhaps the most rewarding part of the process)
+can be done easily - assuming we are in two dimensions - and results in
+visually appealing images (thanks to [`ggplot2`](http://ggplot2.org/))
+An example of how this organizational pattern could prove useful is
+as an aid to understanding kmeans clustering. Other packages in the R ecosystem
+that are related/overlap with this package are:
+[kmeans](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/kmeans.html) and [KMeans_rcpp](https://cran.r-project.org/web/packages/ClusterR/ClusterR.pdf).
 
 The package includes the following functions:
 
 * `kmeans_init(data, K, method = "kmeanspp", seed = NULL)` Selects initial values (or seeds) for k-means clustering based on the input `data` object. `K` number of initial values are chosen by applying the specified `method`. Returns a matrix with coordinates for initialization values, where each row is an initialization value and the columns correspond with the columns of the input data object.
 
-* `kmeans_cluster(data, centers, max_iter=100)` Classifies each observation in `data` by performing k-means clustering. The number of clusters is derived from the number of initial centers specified in `centers`. `max_iter` defaults to 100 and simply places on an upper bound on the number of iterations that take place. Returns a list containing the original data and assigned cluster labels.
+* `kmeans_cluster(data, centers, max_iter=100)` Classifies each observation in `data` by performing k-means clustering. The number of clusters is derived from the number of initial centers specified in `centers`. `max_iter` defaults to 100 and simply places an upper bound on the number of iterations that take place. Returns a data frame containing the original data and new column of assigned cluster labels.
 
 * `kmeans_report(data, assignments)` Visualizes clustered data using original `data`
 and the `assignments` as determined by the cluster function. Returns a list containing
