@@ -6,9 +6,6 @@
 #' @return plot -- a scatter plot of the data coloured by cluster assignment (if 2D data)
 #'              -- a data frame reporting points and their cluster assignemnts
 #'
-#' @examples
-#' kmeans_report(data = data, clust_assigns = clusters)
-#'
 #' @import dplyr
 #' @import ggplot2
 #' @import magrittr

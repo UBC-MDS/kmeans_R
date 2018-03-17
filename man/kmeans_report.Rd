@@ -18,7 +18,3 @@ plot -- a scatter plot of the data coloured by cluster assignment (if 2D data)
 \description{
 Plot data according to cluster assigments
 }
-\examples{
-kmeans_report(data = data, clust_assigns = clusters)
-
-}
