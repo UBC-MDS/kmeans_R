@@ -21,6 +21,8 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
     stop("Data object is missing or in the wrong format.")
   } else if (!is.data.frame(centers) & !is.matrix(centers)) {
     stop("Centers object is missing or in the wrong format.")
+  } else if (ncol(data) != ncol(centers)) {
+    stop("Data and centers are incompatible shape.")
   }
 
   # convert them to matrices because mix of df and mat is gross
