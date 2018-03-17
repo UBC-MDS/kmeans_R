@@ -3,9 +3,17 @@ NULL
 #' k-means clustering
 #'
 #'
-#' @param data  - the data object (data frame or matrix) that k-means clustering will be applied to.
-#' @param centers - the matrix containing the initial centers as computed by kmeans_init
-#' @return - the cluster assignments and the data object stored in a list
+#' @param data  - The data object (data frame or matrix) that k-means clustering will be applied to.
+#' @param centers - The matrix containing the initial centers as computed by kmeans_init.
+#' @return - The data object (as a data frame) with a column containing cluster assignments.
+#'
+#' @examples
+#' x <- runif(100, min = 0, max = 10) + rep(c(0, 10), 50)
+#' y <- rnorm(100, 5, 1) + rep(c(0, 10), 50)
+#' data = data.frame(x = x, y = y)
+#'
+#' centers <- kmeans_init(data = data, K = 2)
+#' kmeans_cluster(data=data, centers=centers)
 #'
 
 
