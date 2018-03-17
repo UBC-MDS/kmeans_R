@@ -3,6 +3,7 @@
 #'
 #' @param data  - The data object (data frame or matrix) that k-means clustering will be applied to.
 #' @param centers - The matrix containing the initial centers as computed by kmeans_init.
+#' @param max_iter - The number of iterations to perform (default is 100).
 #' @return - The data object (as a data frame) with a column containing cluster assignments.
 #'
 #' @examples
@@ -21,6 +22,8 @@ kmeans_cluster <- function(data, centers, max_iter=100) {
     stop("Data object is missing or in the wrong format.")
   } else if (!is.data.frame(centers) & !is.matrix(centers)) {
     stop("Centers object is missing or in the wrong format.")
+  } else if (ncol(data) != ncol(centers)) {
+    stop("Data and centers are incompatible shape.")
   }
 
   # convert them to matrices because mix of df and mat is gross
