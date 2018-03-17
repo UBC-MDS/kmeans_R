@@ -11,10 +11,16 @@ NULL
 #' @return A matrix with coordinates for initialization values, where each row is an initialization value and the columns correspond with the columns of the input data object.
 #' @examples
 #' # create input data object with two distinct clusters
-#' data = data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
+#' data <- data.frame(x = runif(100, min = 0, max = 10) + rep(c(0, 10), 50), y = rnorm(100, 5, 1) + rep(c(0, 10), 50))
 #'
+#' # kmeans++ algorithm by default
 #' kmeans_init(data = data, K = 2)
 #'
+#' # random points initialization method
+#' kmeans_init(data = data, K = 2, method = "rp")
+#'
+#' # random points initialization method with seed set
+#' kmeans_init(data = data, K = 2, method = "rp", seed = 1234)
 
 kmeans_init <- function(data = NULL, K = NULL, method = "kmeanspp", seed = NULL) {
 
