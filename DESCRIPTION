@@ -2,11 +2,24 @@ Package: kmeansR
 Type: Package
 Title:R package aimed towards a user-friendly way of exploring and implementing k-means clustering.
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: MIT + file LICENSE
+Authors@R: c(person("Bradley", "Pick", role = c("aut", "cre")), 
+person("Charley", "Carriero", role = c("aut", "cre")), 
+person("Johannes", "Harmse", role = c("aut", "cre")))
+Description: The package offers simple and easy to use functions 
+    that perform k-means clustering. In particular, the different 
+    stages of clustering are broken up into separate 
+    functions (initialization, clustering, and plotting). 
+    This allows the user to investigate exactly what is going 
+    on at each step, which promotes an understanding of this 
+    disparate aspects of the clustering procedure. 
+    Furthermore, the plotting (perhaps the most rewarding part 
+    of the process) can be done easily - assuming we are in two 
+    dimensions - and results in visually appealing images (thanks to ggplot2). 
+    An example of how this organizational pattern could prove 
+    useful is as an aid to understanding kmeans clustering. 
+    Other packages in the R ecosystem that are related/overlap 
+    with this package are: kmeans and KMeans_rcpp.
+License: MIT | file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
